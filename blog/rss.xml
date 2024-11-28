@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Fluss Blog</title>
+        <link>https://alibaba.github.io/fluss-docs/blog/</link>
+        <description>Fluss Blog</description>
+        <lastBuildDate>Fri, 29 Nov 2024 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Fluss is Now Open Source]]></title>
+            <link>https://alibaba.github.io/fluss-docs/blog/fluss-open-source/</link>
+            <guid>https://alibaba.github.io/fluss-docs/blog/fluss-open-source/</guid>
+            <pubDate>Fri, 29 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Fluss Is Now Open Source]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="fluss-is-now-open-source">Fluss Is Now Open Source<a href="https://alibaba.github.io/fluss-docs/blog/fluss-open-source/#fluss-is-now-open-source" class="hash-link" aria-label="Direct link to Fluss Is Now Open Source" title="Direct link to Fluss Is Now Open Source">​</a></h2>
+<p>Earlier this year at Flink Forward 2024 Berlin we <a href="https://www.ververica.com/blog/introducing-fluss" target="_blank" rel="noopener noreferrer">announced Fluss</a> and today we are thrilled to announce open-sourcing the project.
+Fluss is a <strong>streaming storage system</strong> designed to power real-time analytics. It aspires to change how organizations approach real-time data by acting as the <strong>real-time data layer</strong> for the Lakehouse.
+Its cutting-edge design enables businesses to achieve <strong>sub-second latency</strong>, <strong>high throughput</strong>, and <strong>cost efficiency</strong> for data analytics, making it the ideal solution for modern data-driven applications.</p>
+<p>We have historically invested a lot of effort into advancing the data streaming ecosystem, being major contributors to <a href="https://flink.apache.org/" target="_blank" rel="noopener noreferrer">Apache Flink®</a>, <a href="https://www.ververica.com/blog/ververica-donates-flink-cdc-empowering-real-time-data-integration-for-the-community" target="_blank" rel="noopener noreferrer">Apache Flink CDC</a>, and <a href="https://paimon.apache.org/" target="_blank" rel="noopener noreferrer">Apache Paimon</a>.
+As part of our commitment, Fluss is now open source under the Apache 2.0 license and is available on <a href="https://github.com/alibaba/fluss" target="_blank" rel="noopener noreferrer">GitHub</a>, inviting users to create the next generation of real-time architectures.</p>
+<p><img decoding="async" loading="lazy" alt="FF Announcement" src="https://alibaba.github.io/fluss-docs/assets/images/ff_os-2589690ef465b4d2c76c7861438ad18b.png" width="3840" height="1286" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="real-time-streaming-storage-for-the-lakehouse-era">Real-Time Streaming Storage for the Lakehouse Era<a href="https://alibaba.github.io/fluss-docs/blog/fluss-open-source/#real-time-streaming-storage-for-the-lakehouse-era" class="hash-link" aria-label="Direct link to Real-Time Streaming Storage for the Lakehouse Era" title="Direct link to Real-Time Streaming Storage for the Lakehouse Era">​</a></h3>
+<p>The need for real-time insights has grown exponentially - especially with the recent explosion of AI. Still, the tools and architectures we’ve relied on for years weren’t designed with streaming-first analytical workflows in mind. Traditional architectures often involve complex integrations between message queues like Kafka, processing engines like Flink, and storage systems that are more batch-oriented than real-time. This approach not only increases latency but also adds operational overhead and cost. Fluss offers a <strong>unified streaming storage layer</strong> purpose-built for <strong>real-time analytics</strong>.</p>
+<p>At its core, Fluss combines the best of <strong>streaming</strong> and <strong>analytical storage</strong>. Its <strong>columnar stream</strong> design is optimized for real-time analytical queries, enabling lightning-fast data access and updates. With support for <strong>real-time data ingestion</strong> and integrations with <strong>real-time lakehouse solutions</strong> such as Paimon, Fluss ensures that data is always fresh and ready for analysis, making it ideal for applications where latency is critical.</p>
+<p>A critical aspect of Fluss is also its deep integration with Apache FlinkⓇ the de facto gold standard for stream processing. This integration combines a <strong>stream processor</strong> and a <strong>real-time storage layer</strong>, eliminating the need for separate message queues like Kafka in analytics-focused architectures. Fluss simplifies pipelines, reduces costs, and improves performance for <strong>high-throughput</strong>, <strong>low-latency analytics</strong>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="building-the-future-of-analytics-with-fluss">Building the Future of Analytics with Fluss<a href="https://alibaba.github.io/fluss-docs/blog/fluss-open-source/#building-the-future-of-analytics-with-fluss" class="hash-link" aria-label="Direct link to Building the Future of Analytics with Fluss" title="Direct link to Building the Future of Analytics with Fluss">​</a></h3>
+<p>Fluss is designed to support a wide range of use cases, from powering dashboards and monitoring systems to enabling <strong>streaming ETL</strong> and <strong>real-time intelligence pipelines</strong> for the modern AI era. Its ability to provide real-time updates makes it a natural fit for <strong>streaming data warehouses</strong>, where fresh data is essential for decision-making.</p>
+<p>By serving as the real-time data layer on the Lakehouse, Fluss supports both <strong>streaming-first</strong> architectures and <strong>unified batch and stream processing</strong>. This flexibility should be appealing for organizations looking to modernize their analytics stack while keeping costs low and performance high.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="whats-next-for-fluss">What’s Next for Fluss?<a href="https://alibaba.github.io/fluss-docs/blog/fluss-open-source/#whats-next-for-fluss" class="hash-link" aria-label="Direct link to What’s Next for Fluss?" title="Direct link to What’s Next for Fluss?">​</a></h3>
+<p>Open-sourcing Fluss is just the beginning and it will be donated to the Apache Software Foundation (ASF). We’re committed to working closely with the community to expand its capabilities and adoption. You can find more information about the project’s roadmap <a href="https://alibaba.github.io/fluss-docs/roadmap/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+<p><img decoding="async" loading="lazy" alt="Banner" src="https://alibaba.github.io/fluss-docs/assets/images/banner-5523bd3a3f5145b15e36c6bfb46796be.png" width="1998" height="1001" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="join-the-journey">Join the Journey<a href="https://alibaba.github.io/fluss-docs/blog/fluss-open-source/#join-the-journey" class="hash-link" aria-label="Direct link to Join the Journey" title="Direct link to Join the Journey">​</a></h3>
+<p>We invite you to join us and help grow our community around the project. Explore Fluss, contribute to its development, and build the next generation of data pipelines.</p>
+<p>Make sure to keep an eye on the project, give it a try and if you like it, don’t forget to give it some ❤️ via ⭐ on <a href="https://github.com/alibaba/fluss" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="getting-started">Getting Started<a href="https://alibaba.github.io/fluss-docs/blog/fluss-open-source/#getting-started" class="hash-link" aria-label="Direct link to Getting Started" title="Direct link to Getting Started">​</a></h3>
+<ul>
+<li>Visit the <a href="https://github.com/alibaba/fluss" target="_blank" rel="noopener noreferrer">GitHub repository</a>.</li>
+<li>Check out the <a href="https://alibaba.github.io/fluss-docs/docs/quickstart/flink/" target="_blank" rel="noopener noreferrer">quickstart guide</a>.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="additional-resources">Additional Resources<a href="https://alibaba.github.io/fluss-docs/blog/fluss-open-source/#additional-resources" class="hash-link" aria-label="Direct link to Additional Resources" title="Direct link to Additional Resources">​</a></h3>
+<ul>
+<li>Announcement Blog Post: <a href="https://www.ververica.com/blog/introducing-fluss" target="_blank" rel="noopener noreferrer">Introducing Fluss: Unified Streaming Storage For Next-Generation Data Analytics</a></li>
+<li>Flink Forward Keynote Announcement: <a href="https://www.ververica.academy/courses/3d163483-5040-4d60-b5b3-755c3277edf7/activities/1af290fd-05bc-4fab-90be-6ed4628399be" target="_blank" rel="noopener noreferrer">The Future - Introducing Fluss</a></li>
+<li>Flink Forward Fluss Presentation: <a href="https://www.ververica.academy/courses/3d163483-5040-4d60-b5b3-755c3277edf7/activities/a366d118-6c53-47ef-91bb-289fc2462b07" target="_blank" rel="noopener noreferrer">Is Kafka the Best Storage for Streaming Analytics?</a></li>
+</ul>]]></content:encoded>
+        </item>
+    </channel>
+</rss>
