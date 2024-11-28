@@ -42,15 +42,15 @@ const toc = [{
   "id": "enable-lakehouse-storage",
   "level": 2
 }, {
-  "value": "Cluster configurations about lakehouse storage",
-  "id": "cluster-configurations-about-lakehouse-storage",
+  "value": "Lakehouse Storage Cluster Configurations",
+  "id": "lakehouse-storage-cluster-configurations",
   "level": 3
 }, {
-  "value": "Start datalake tiering service",
-  "id": "start-datalake-tiering-service",
+  "value": "Start The Datalake Tiering Service",
+  "id": "start-the-datalake-tiering-service",
   "level": 3
 }, {
-  "value": "Enable lakehouse storage per table",
+  "value": "Enable Lakehouse Storage Per Table",
   "id": "enable-lakehouse-storage-per-table",
   "level": 3
 }];
@@ -87,8 +87,8 @@ function _createMdxContent(props) {
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
       children: "Lakehouse Storage disabled by default, you must enable it manually."
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {
-      id: "cluster-configurations-about-lakehouse-storage",
-      children: "Cluster configurations about lakehouse storage"
+      id: "lakehouse-storage-cluster-configurations",
+      children: "Lakehouse Storage Cluster Configurations"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
       children: ["First, you must configure the lakehouse storage in ", (0,jsx_runtime.jsx)(_components.code, {
         children: "server.yaml"
@@ -99,8 +99,8 @@ function _createMdxContent(props) {
         children: "datalake.tiered.storage: paimon\n\n# the catalog config about Paimon, assuming using Filesystem catalog\npaimon.catalog.type: filesystem\npaimon.catalog.warehouse: /tmp/paimon_data_warehouse\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {
-      id: "start-datalake-tiering-service",
-      children: "Start datalake tiering service"
+      id: "start-the-datalake-tiering-service",
+      children: "Start The Datalake Tiering Service"
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
       children: "Then, you must start the datalake tiering service to compact Fluss's data to the lakehouse storage.\nTo start the datalake tiering service, you must have a Flink cluster running since Fluss currently only supports Flink as a tiering service backend."
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
@@ -133,7 +133,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {
       id: "enable-lakehouse-storage-per-table",
-      children: "Enable lakehouse storage per table"
+      children: "Enable Lakehouse Storage Per Table"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
       children: ["To enable lakehouse storage for a table, the table must be created with the option ", (0,jsx_runtime.jsx)(_components.code, {
         children: "'table.datalake.enabled' = 'true'"

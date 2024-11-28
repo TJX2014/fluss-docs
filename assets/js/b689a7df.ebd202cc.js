@@ -55,20 +55,20 @@ const toc = [{
   "id": "preparation-when-using-flink-sql-client",
   "level": 2
 }, {
-  "value": "Adding catalogs",
-  "id": "adding-catalogs",
+  "value": "Creating a Catalog",
+  "id": "creating-a-catalog",
   "level": 2
 }, {
-  "value": "Creating a table",
+  "value": "Creating a Table",
   "id": "creating-a-table",
   "level": 2
 }, {
-  "value": "Writing",
-  "id": "writing",
+  "value": "Data Writing",
+  "id": "data-writing",
   "level": 2
 }, {
-  "value": "Reading",
-  "id": "reading",
+  "value": "Data Reading",
+  "id": "data-reading",
   "level": 2
 }, {
   "value": "Type Conversion",
@@ -338,12 +338,10 @@ function _createMdxContent(props) {
         children: "<FLINK_HOME>/bin/sql-client.sh\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
-      id: "adding-catalogs",
-      children: "Adding catalogs"
-    }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["A catalog is created and named by executing the following query (replace ", (0,jsx_runtime.jsx)(_components.code, {
-        children: "<catalog_name>"
-      }), " with your catalog name):"]
+      id: "creating-a-catalog",
+      children: "Creating a Catalog"
+    }), "\n", (0,jsx_runtime.jsx)(_components.p, {
+      children: "You can use the following SQL statement to create a catalog."
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -361,16 +359,16 @@ function _createMdxContent(props) {
           }), ",\nyou should start the Fluss server first. See ", (0,jsx_runtime.jsx)(_components.a, {
             href: "/docs/install-deploy/overview/#how-to-deploy-fluss",
             children: "Deploying Fluss"
-          }), "\nfor how to build a Fluss cluster.\nHere, we suppose you have built a Fluss cluster in local machine and the CoordinatorServer port is 9123."]
+          }), "\nfor how to build a Fluss cluster.\nHere, it is assumed that there is a Fluss cluster running on your local machine and the CoordinatorServer port is 9123."]
         }), "\n", (0,jsx_runtime.jsxs)(_components.li, {
-          children: ["The ", (0,jsx_runtime.jsx)(_components.code, {
-            children: "bootstrap.servers"
-          }), " is used to discover all the nodes in the Fluss cluster. You can configure it with 1 or 3\nFluss server (either CoordinatorServer or TabletServer) addresses using comma separated."]
+          children: ["The", (0,jsx_runtime.jsx)(_components.code, {
+            children: " bootstrap.servers"
+          }), " configuration is used to discover all nodes within the Fluss cluster. It can be set with one or more (up to three) Fluss server addresses (either CoordinatorServer or TabletServer) separated by commas."]
         }), "\n"]
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
       id: "creating-a-table",
-      children: "Creating a table"
+      children: "Creating a Table"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -378,8 +376,8 @@ function _createMdxContent(props) {
         children: "USE CATALOG `fluss_catalog`;\n\nCREATE TABLE pk_table (\n  shop_id BIGINT,\n  user_id BIGINT,\n  num_orders INT,\n  total_amount INT,\n  PRIMARY KEY (shop_id, user_id) NOT ENFORCED\n) WITH (\n  'bucket.num' = '4'\n);\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
-      id: "writing",
-      children: "Writing"
+      id: "data-writing",
+      children: "Data Writing"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
       children: ["To append new data to a table, you can use ", (0,jsx_runtime.jsx)(_components.code, {
         children: "INSERT INTO"
@@ -390,12 +388,8 @@ function _createMdxContent(props) {
         metastring: "title=\"Flink SQL Client\"",
         children: "-- Execute the flink job in batch mode for current session context\nSET 'execution.runtime-mode' = 'batch';\n-- use tableau result mode\nSET 'sql-client.execution.result-mode' = 'tableau';\n\nINSERT INTO pk_table VALUES\n  (1234, 1234, 1, 1),\n  (12345, 12345, 2, 2),\n  (123456, 123456, 3, 3);\n"
       })
-    }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["To update the data whose primary key is ", (0,jsx_runtime.jsx)(_components.code, {
-        children: "(1234, 1234)"
-      }), " and  a Flink streaming job, use ", (0,jsx_runtime.jsx)(_components.code, {
-        children: "UPDATE"
-      }), ":"]
+    }), "\n", (0,jsx_runtime.jsx)(_components.p, {
+      children: "To update data record with the primary key (1234, 1234) in a Flink streaming job, use the UPDATE statement as follows:"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -403,7 +397,7 @@ function _createMdxContent(props) {
         children: "-- should run in batch mode\nUPDATE pk_table SET total_amount = 4 WHERE shop_id = 1234 and user_id = 1234;\n"
       })
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["To delete the data whose primary key is ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["To delete the data record with primary key ", (0,jsx_runtime.jsx)(_components.code, {
         children: "(12345, 12345)"
       }), ", use ", (0,jsx_runtime.jsx)(_components.code, {
         children: "DELETE FROM"
@@ -415,20 +409,22 @@ function _createMdxContent(props) {
         children: "-- should run in batch mode\nDELETE FROM pk_table WHERE shop_id = 12345 and user_id = 12345;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
-      id: "reading",
-      children: "Reading"
+      id: "data-reading",
+      children: "Data Reading"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["To lookup the date whose primary key is ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["To retrieve data with the primary key ", (0,jsx_runtime.jsx)(_components.code, {
         children: "(1234, 1234)"
-      }), ", you can perform a point query by applying a filter on primary key:"]
+      }), ", you can perform a point query by applying a filter on the primary key:"]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
         metastring: "title=\"Flink SQL Client\"",
         children: "-- should run in batch mode\nSELECT * FROM pk_table WHERE shop_id = 1234 and user_id = 1234;\n"
       })
-    }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "To preview some data in a table, you can use the LIMIT query:"
+    }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
+      children: ["To preview a subset of the data in a table, you can use a ", (0,jsx_runtime.jsx)(_components.code, {
+        children: "LIMIT"
+      }), " clause."]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -436,7 +432,7 @@ function _createMdxContent(props) {
         children: "-- should run in batch mode\nSELECT * FROM pk_table LIMIT 10;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "Fluss supports processing incremental data in flink streaming jobs:"
+      children: "Fluss supports processing incremental data reading in flink streaming jobs:"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",

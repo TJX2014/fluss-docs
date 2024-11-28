@@ -71,7 +71,6 @@ function _createMdxContent(props) {
     header: "header",
     p: "p",
     pre: "pre",
-    strong: "strong",
     table: "table",
     tbody: "tbody",
     td: "td",
@@ -91,25 +90,19 @@ function _createMdxContent(props) {
       id: "basic-concept",
       children: "Basic Concept"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["The ", (0,jsx_runtime.jsx)(_components.strong, {
-        children: "PrimaryKey Table"
-      }), " in Fluss ensures the uniqueness of the specified primary key and supports ", (0,jsx_runtime.jsx)(_components.strong, {
+      children: ["PrimaryKey Tablea in Fluss ensure the uniqueness of the specified primary key and supports ", (0,jsx_runtime.jsx)(_components.code, {
         children: "INSERT"
-      }), ", ", (0,jsx_runtime.jsx)(_components.strong, {
+      }), ", ", (0,jsx_runtime.jsx)(_components.code, {
         children: "UPDATE"
-      }), ", and ", (0,jsx_runtime.jsx)(_components.strong, {
+      }), ", and ", (0,jsx_runtime.jsx)(_components.code, {
         children: "DELETE"
       }), " operations."]
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["A ", (0,jsx_runtime.jsx)(_components.strong, {
-        children: "PrimaryKey Table"
-      }), " is created by specifying a ", (0,jsx_runtime.jsx)(_components.strong, {
+      children: ["A PrimaryKey Table is created by specifying a ", (0,jsx_runtime.jsx)(_components.code, {
         children: "PRIMARY KEY"
-      }), " clause in the ", (0,jsx_runtime.jsx)(_components.strong, {
+      }), " clause in the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "CREATE TABLE"
-      }), " statement. For example, the following Flink SQL statement creates a ", (0,jsx_runtime.jsx)(_components.strong, {
-        children: "PrimaryKey Table"
-      }), " with ", (0,jsx_runtime.jsx)(_components.code, {
+      }), " statement. For example, the following Flink SQL statement creates a PrimaryKey Table with ", (0,jsx_runtime.jsx)(_components.code, {
         children: "shop_id"
       }), " and ", (0,jsx_runtime.jsx)(_components.code, {
         children: "user_id"
@@ -121,7 +114,7 @@ function _createMdxContent(props) {
         children: "CREATE TABLE pk_table (\n  shop_id BIGINT,\n  user_id BIGINT,\n  num_orders INT,\n  total_amount INT,\n  PRIMARY KEY (shop_id, user_id) NOT ENFORCED\n) WITH (\n  'bucket.num' = '4'\n);\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "In the Fluss primary key table, each row of data has a unique primary key.\nIf multiple entries with the same primary key are written to the Fluss primary key table, only the last entry will be retained."
+      children: "In Fluss primary key table, each row of data has a unique primary key.\nIf multiple entries with the same primary key are written to the Fluss primary key table, only the last entry will be retained."
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
       children: ["For ", (0,jsx_runtime.jsx)(_components.a, {
         href: "/fluss-docs/docs/table-design/data-distribution/partitioning",

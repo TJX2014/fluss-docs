@@ -18,7 +18,7 @@ __webpack_require__.d(__webpack_exports__, {
 });
 
 ;// ./.docusaurus/docusaurus-plugin-content-docs/default/site-docs-concepts-architecture-md-8a1.json
-const site_docs_concepts_architecture_md_8a1_namespaceObject = /*#__PURE__*/JSON.parse('{"id":"concepts/architecture","title":"Architecture","description":"A Fluss cluster consists of two main processes: CoordinatorServer and TabletServer.","source":"@site/docs/concepts/architecture.md","sourceDirName":"concepts","slug":"/concepts/architecture","permalink":"/fluss-docs/docs/concepts/architecture","draft":false,"unlisted":false,"tags":[],"version":"current","sidebarPosition":1,"frontMatter":{"sidebar_position":1},"sidebar":"docsSidebar","previous":{"title":"Flink","permalink":"/fluss-docs/docs/quickstart/flink"},"next":{"title":"Overview","permalink":"/fluss-docs/docs/install-deploy/overview"}}');
+const site_docs_concepts_architecture_md_8a1_namespaceObject = /*#__PURE__*/JSON.parse('{"id":"concepts/architecture","title":"Architecture","description":"A Fluss cluster consists of two main processes: the CoordinatorServer and the TabletServer.","source":"@site/docs/concepts/architecture.md","sourceDirName":"concepts","slug":"/concepts/architecture","permalink":"/fluss-docs/docs/concepts/architecture","draft":false,"unlisted":false,"tags":[],"version":"current","sidebarPosition":1,"frontMatter":{"sidebar_position":1},"sidebar":"docsSidebar","previous":{"title":"Flink","permalink":"/fluss-docs/docs/quickstart/flink"},"next":{"title":"Overview","permalink":"/fluss-docs/docs/install-deploy/overview"}}');
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__(4848);
 // EXTERNAL MODULE: ./node_modules/@mdx-js/react/lib/index.js
@@ -93,9 +93,9 @@ function _createMdxContent(props) {
         children: "Architecture"
       })
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["A Fluss cluster consists of two main processes: ", (0,jsx_runtime.jsx)(_components.strong, {
+      children: ["A Fluss cluster consists of two main processes: the ", (0,jsx_runtime.jsx)(_components.strong, {
         children: "CoordinatorServer"
-      }), " and ", (0,jsx_runtime.jsx)(_components.strong, {
+      }), " and the ", (0,jsx_runtime.jsx)(_components.strong, {
         children: "TabletServer"
       }), "."]
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
@@ -165,7 +165,7 @@ function _createMdxContent(props) {
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
       children: ["The ", (0,jsx_runtime.jsx)(_components.strong, {
         children: "LogStore"
-      }), " is designed to store log data, functioning similarly to a database binlog.\nMessages can only be appended, not modified, ensuring data integrity.\nIts primary purposes are to enable low-latency streaming reads and to serve as the write-ahead log (WAL) for restoring the ", (0,jsx_runtime.jsx)(_components.strong, {
+      }), " is designed to store log data, functioning similarly to a database binlog.\nMessages can only be appended, not modified, ensuring data integrity.\nIts primary purpose is to enable low-latency streaming reads and to serve as the write-ahead log (WAL) for restoring the ", (0,jsx_runtime.jsx)(_components.strong, {
         children: "KvStore"
       }), "."]
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {

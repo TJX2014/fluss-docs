@@ -9,7 +9,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Fluss" href="/fluss-docs/opensearch.xml"><link rel="stylesheet" href="/fluss-docs/assets/css/styles.1072641d.css">
-<script src="/fluss-docs/assets/js/runtime~main.f49cd214.js" defer="defer"></script>
+<script src="/fluss-docs/assets/js/runtime~main.b323fc5c.js" defer="defer"></script>
 <script src="/fluss-docs/assets/js/main.d4281fe9.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -29,8 +29,7 @@ Usually, Log Table is used to store logs in very high-throughput, like the typic
 <li><strong>Hash-based Bucketing</strong>: If <code>bucket.key</code> property is set in the table property, Fluss will determine to assign records to bucket based on the hash value of the specified bucket keys, and the property <code>client.writer.bucket.no-key-assigner</code> will be ignored. For example, setting <code>&#x27;bucket.key&#x27; = &#x27;c1,c2&#x27;</code> will assign buckets based on the values of columns <code>c1</code> and <code>c2</code>. Different column names should be separated by commas.</li>
 </ol>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="data-consumption">Data Consumption<a href="#data-consumption" class="hash-link" aria-label="Direct link to Data Consumption" title="Direct link to Data Consumption">​</a></h2>
-<p>For log tables, you can consume the data produced in real-time, with the consumption order of the data in each bucket matching the order in which the data was written to the Fluss table.
-Specifically:</p>
+<p>Log Tables in Fluss allow real-time data consumption, preserving the order of data within each bucket as it was written to the Fluss table. Specifically:</p>
 <ul>
 <li>For two data records from the same table and the same bucket, the data that was written to the Fluss table first will be consumed first.</li>
 <li>For two data records from the same partition but different buckets, the consumption order is not guaranteed because different buckets may be processed concurrently by different data consumption jobs.</li>

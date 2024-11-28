@@ -143,7 +143,7 @@ function _createMdxContent(props) {
       id: "data-consumption",
       children: "Data Consumption"
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "For log tables, you can consume the data produced in real-time, with the consumption order of the data in each bucket matching the order in which the data was written to the Fluss table.\nSpecifically:"
+      children: "Log Tables in Fluss allow real-time data consumption, preserving the order of data within each bucket as it was written to the Fluss table. Specifically:"
     }), "\n", (0,jsx_runtime.jsxs)(_components.ul, {
       children: ["\n", (0,jsx_runtime.jsx)(_components.li, {
         children: "For two data records from the same table and the same bucket, the data that was written to the Fluss table first will be consumed first."

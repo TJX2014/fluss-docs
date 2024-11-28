@@ -42,8 +42,8 @@ const toc = [{
   "id": "introducing-lakehouse",
   "level": 2
 }, {
-  "value": "Streaming Lakehouse: Unified Stream/Lakehouse",
-  "id": "streaming-lakehouse-unified-streamlakehouse",
+  "value": "Streaming Lakehouse: Streaming &amp; Lakehouse Unification",
+  "id": "streaming-lakehouse-streaming--lakehouse-unification",
   "level": 2
 }];
 function _createMdxContent(props) {
@@ -93,10 +93,10 @@ function _createMdxContent(props) {
         children: "If you require read efficiency, then you accumulate data until you can write to large Parquet files, but this introduces\nmuch higher latency."
       }), "\n"]
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "At all, these data lake formats are all at most in minute-level data freshness under the best usage."
+      children: "Overall, these data lake formats typically achieve data freshness at best within minute-level granularity, even under optimal usage conditions."
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
-      id: "streaming-lakehouse-unified-streamlakehouse",
-      children: "Streaming Lakehouse: Unified Stream/Lakehouse"
+      id: "streaming-lakehouse-streaming--lakehouse-unification",
+      children: "Streaming Lakehouse: Streaming & Lakehouse Unification"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
       children: ["Fluss is a streaming storage supporting streaming reads and writes with sub-second low latency.\nWith ", (0,jsx_runtime.jsx)(_components.a, {
         href: "/fluss-docs/docs/maintenance/tiered-storage/lakehouse-storage",

@@ -71,8 +71,8 @@ const toc = [{
   "id": "streaming-into-fluss",
   "level": 2
 }, {
-  "value": "Query on Fluss Tables",
-  "id": "query-on-fluss-tables",
+  "value": "Run Ad-hoc Queries on Fluss Tables",
+  "id": "run-ad-hoc-queries-on-fluss-tables",
   "level": 2
 }, {
   "value": "Update/Delete rows on Fluss Tables",
@@ -91,15 +91,15 @@ const toc = [{
   "id": "integrate-with-paimon",
   "level": 2
 }, {
-  "value": "Start lakehouse tiering service",
-  "id": "start-lakehouse-tiering-service",
+  "value": "Start the Lakehouse Tiering Service",
+  "id": "start-the-lakehouse-tiering-service",
   "level": 3
 }, {
   "value": "Streaming into Fluss datalake-enabled tables",
   "id": "streaming-into-fluss-datalake-enabled-tables",
   "level": 3
 }, {
-  "value": "Real-Time Analytics on Fluss datalake-enabled tables",
+  "value": "Real-Time Analytics on Fluss datalake-enabled Tables",
   "id": "real-time-analytics-on-fluss-datalake-enabled-tables",
   "level": 3
 }, {
@@ -322,7 +322,7 @@ function _createMdxContent(props) {
       id: "streaming-into-fluss",
       children: "Streaming into Fluss"
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "First, run the following sql to sync data from source tables to Fluss tables:"
+      children: "First, run the following SQL to sync data from source tables to Fluss tables:"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -330,16 +330,16 @@ function _createMdxContent(props) {
         children: "EXECUTE STATEMENT SET\nBEGIN\n    INSERT INTO fluss_nation SELECT * FROM `default_catalog`.`default_database`.source_nation;\n    INSERT INTO fluss_customer SELECT * FROM `default_catalog`.`default_database`.source_customer;\n    INSERT INTO fluss_order SELECT * FROM `default_catalog`.`default_database`.source_order;\nEND;\n"
       })
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["Fluss primary-key tables support high QPS point lookup on primary keys, so it's efficient to\n", (0,jsx_runtime.jsx)(_components.a, {
+      children: ["Fluss primary-key tables support high QPS point lookup queries on primary keys. Performing a ", (0,jsx_runtime.jsx)(_components.a, {
         href: "https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/sql/queries/joins/#lookup-join",
         children: "lookup join"
-      }), "\nprimary-key tables ", (0,jsx_runtime.jsx)(_components.code, {
+      }), " is really efficient and you can use it to enrich\nto enrich the ", (0,jsx_runtime.jsx)(_components.code, {
+        children: "fluss_orders"
+      }), " table with information from the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "fluss_customer"
       }), " and ", (0,jsx_runtime.jsx)(_components.code, {
         children: "fluss_nation"
-      }), " to enrich the ", (0,jsx_runtime.jsx)(_components.code, {
-        children: "fluss_orders"
-      }), " table."]
+      }), " primary-key tables."]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -347,10 +347,10 @@ function _createMdxContent(props) {
         children: "INSERT INTO enriched_orders\nSELECT o.order_key, \n       o.cust_key, \n       o.total_price,\n       o.order_date, \n       o.order_priority,\n       o.clerk,\n       c.name,\n       c.phone,\n       c.acctbal, \n       c.mktsegment,\n       n.name\nFROM fluss_order o \nLEFT JOIN fluss_customer FOR SYSTEM_TIME AS OF `o`.`ptime` AS `c` \n    ON o.cust_key = c.cust_key\nLEFT JOIN fluss_nation FOR SYSTEM_TIME AS OF `o`.`ptime` AS `n` \n    ON c.nation_key = n.nation_key;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
-      id: "query-on-fluss-tables",
-      children: "Query on Fluss Tables"
+      id: "run-ad-hoc-queries-on-fluss-tables",
+      children: "Run Ad-hoc Queries on Fluss Tables"
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "Now, you can have a real-time analytics on Fluss tables. For example, to count the number of orders of one\nparticular customer, running the following sql to see the real-time result."
+      children: "You can now perform real-time analytics directly on Fluss tables.\nFor instance, to calculate the number of orders placed by a specific customer, you can execute the following SQL query to obtain instant, real-time results."
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -358,15 +358,17 @@ function _createMdxContent(props) {
         children: "-- use tableau result mode\nSET 'sql-client.execution.result-mode' = 'tableau';\n    \n-- switch to batch mode\nSET 'execution.runtime-mode' = 'batch';\n    \n-- use limit to query the enriched_orders table\nSELECT * FROM enriched_orders LIMIT 2;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "The result looks like:"
+      children: (0,jsx_runtime.jsx)(_components.strong, {
+        children: "Sample Output"
+      })
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         children: "+-----------+----------+-------------+------------+----------------+--------+------------+----------------+--------------+-----------------+-------------+\n| order_key | cust_key | total_price | order_date | order_priority |  clerk |  cust_name |     cust_phone | cust_acctbal | cust_mktsegment | nation_name |\n+-----------+----------+-------------+------------+----------------+--------+------------+----------------+--------------+-----------------+-------------+\n|  23199744 |        9 |      266.44 | 2024-08-29 |           high | Clerk1 |   Joe King |   908.207.8513 |       124.28 |       FURNITURE |      JORDAN |\n|  10715776 |        2 |      924.43 | 2024-11-04 |         medium | Clerk3 | Rita Booke | (925) 775-0717 |       172.39 |       FURNITURE |      UNITED |\n+-----------+----------+-------------+------------+----------------+--------+------------+----------------+--------------+-----------------+-------------+\n"
       })
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["You may be interested in the particular customer, you can lookup it by ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["If you are interested in a specific customer, you can retrieve their details by performing a lookup on the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "cust_key"
-      }), " with the following SQL:"]
+      }), "."]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -374,14 +376,18 @@ function _createMdxContent(props) {
         children: "-- lookup by primary key\nSELECT * FROM fluss_customer WHERE `cust_key` = 1;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "The result looks like:"
+      children: (0,jsx_runtime.jsx)(_components.strong, {
+        children: "Sample Output"
+      })
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-shell",
         children: "+----------+---------------+--------------+------------+---------+------------+\n| cust_key |          name |        phone | nation_key | acctbal | mktsegment |\n+----------+---------------+--------------+------------+---------+------------+\n|        1 | Al K. Seltzer | 817-617-7960 |          1 |  533.41 | AUTOMOBILE |\n+----------+---------------+--------------+------------+---------+------------+\n"
       })
-    }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "The result should be returned quickly since Fluss supports fast lookup by primary key for primary key table."
+    }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
+      children: [(0,jsx_runtime.jsx)(_components.strong, {
+        children: "Note:"
+      }), " Overall the query results are returned really fast, as Fluss enables efficient primary key lookups for tables with defined primary keys."]
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
       id: "updatedelete-rows-on-fluss-tables",
       children: "Update/Delete rows on Fluss Tables"
@@ -390,7 +396,7 @@ function _createMdxContent(props) {
         children: "UPDATE"
       }), " and ", (0,jsx_runtime.jsx)(_components.code, {
         children: "DELETE"
-      }), " statement to update/delete rows on Fluss tables."]
+      }), " statements to update/delete rows on Fluss tables."]
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {
       id: "update",
       children: "Update"
@@ -400,8 +406,10 @@ function _createMdxContent(props) {
         metastring: "title=\"Flink SQL Client\"",
         children: "-- update by primary key\nUPDATE fluss_customer SET `name` = 'fluss_updated' WHERE `cust_key` = 1;\n"
       })
-    }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "Then you can lookup the row:"
+    }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
+      children: ["Then you can ", (0,jsx_runtime.jsx)(_components.code, {
+        children: "lookup"
+      }), " the specific row:"]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -409,16 +417,18 @@ function _createMdxContent(props) {
         children: "SELECT * FROM fluss_customer WHERE `cust_key` = 1;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "The result looks like:"
+      children: (0,jsx_runtime.jsx)(_components.strong, {
+        children: "Sample Output"
+      })
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-shell",
         children: "+----------+---------------+--------------+------------+---------+------------+\n| cust_key |          name |        phone | nation_key | acctbal | mktsegment |\n+----------+---------------+--------------+------------+---------+------------+\n|        1 | fluss_updated | 817-617-7960 |          1 |  533.41 | AUTOMOBILE |\n+----------+---------------+--------------+------------+---------+------------+\n"
       })
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["The ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["Notice that the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "name"
-      }), " column is updated to ", (0,jsx_runtime.jsx)(_components.code, {
+      }), " column has been updated to ", (0,jsx_runtime.jsx)(_components.code, {
         children: "fluss_updated"
       }), "."]
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {
@@ -431,7 +441,7 @@ function _createMdxContent(props) {
         children: "DELETE FROM fluss_customer WHERE `cust_key` = 1;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "Then, you should get empty set if lookup the row by the following SQL:"
+      children: "The following SQL query should return an empty result."
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -442,14 +452,17 @@ function _createMdxContent(props) {
       id: "integrate-with-paimon",
       children: "Integrate with Paimon"
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {
-      id: "start-lakehouse-tiering-service",
-      children: "Start lakehouse tiering service"
+      id: "start-the-lakehouse-tiering-service",
+      children: "Start the Lakehouse Tiering Service"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["To integrate with Paimon, you must start the lakehouse tiering service firstly. Open a new terminal and change working directory to ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["To integrate with ", (0,jsx_runtime.jsx)(_components.a, {
+        href: "https://paimon.apache.org/",
+        children: "Apache Paimon"
+      }), ", you need to start the ", (0,jsx_runtime.jsx)(_components.code, {
+        children: "Lakehouse Tiering Service"
+      }), ".\nOpen a new terminal, navigate to the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "fluss-quickstart-flink"
-      }), ".\nRun the following command in the working directly ", (0,jsx_runtime.jsx)(_components.code, {
-        children: "fluss-quickstart-flink"
-      }), " to start the lakehouse tiering service:"]
+      }), " directory, and execute the following command within this directory to start the service:"]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-shell",
@@ -466,11 +479,13 @@ function _createMdxContent(props) {
       id: "streaming-into-fluss-datalake-enabled-tables",
       children: "Streaming into Fluss datalake-enabled tables"
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "By default, table is datalake disabled, so the lakehouse tiering service won't tier the data of the table to datalake."
+      children: "By default, tables are created with data lake integration disabled, meaning the Lakehouse Tiering Service will not tier the table's data to the data lake."
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["You must create a table with table option ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["To enable lakehouse functionality as a tiered storage solution for a table, you must create the table with the configuration option ", (0,jsx_runtime.jsx)(_components.code, {
         children: "table.datalake.enabled = true"
-      }), " to enabled lakehouse as a tiered storage for the table.\nBack to sql-client, run the following SQL to create a datalake-enabled table"]
+      }), ".\nReturn to the ", (0,jsx_runtime.jsx)(_components.code, {
+        children: "SQL client"
+      }), " and execute the following SQL statement to create a table with data lake integration enabled:"]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -478,7 +493,9 @@ function _createMdxContent(props) {
         children: "CREATE TABLE datalake_enriched_orders (\n    `order_key` BIGINT,\n    `cust_key` INT NOT NULL,\n    `total_price` DECIMAL(15, 2),\n    `order_date` DATE,\n    `order_priority` STRING,\n    `clerk` STRING,\n    `cust_name` STRING,\n    `cust_phone` STRING,\n    `cust_acctbal` DECIMAL(15, 2),\n    `cust_mktsegment` STRING,\n    `nation_name` STRING,\n    PRIMARY KEY (`order_key`) NOT ENFORCED\n) WITH ('table.datalake.enabled' = 'true');\n"
       })
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["Then, streaming writing data to the datalake-enabled table ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["Next, perform streaming data writing into the ", (0,jsx_runtime.jsx)(_components.strong, {
+        children: "datalake-enabled"
+      }), " table, ", (0,jsx_runtime.jsx)(_components.code, {
         children: "datalake_enriched_orders"
       }), ":"]
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
@@ -489,28 +506,32 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.h3, {
       id: "real-time-analytics-on-fluss-datalake-enabled-tables",
-      children: "Real-Time Analytics on Fluss datalake-enabled tables"
+      children: "Real-Time Analytics on Fluss datalake-enabled Tables"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["Now, the data of the table ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["The data for the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "datalake_enriched_orders"
-      }), " is in Fluss(for rel-time data) and Paimon(for historical data)."]
+      }), " table is stored in Fluss (for real-time data) and Paimon (for historical data)."]
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["When you query with specifying table ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["When querying the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "datalake_enriched_orders"
-      }), ", Fluss will union the data in Fluss and Paimon to get the full result."]
+      }), " table, Fluss uses a union operation that combines data from both Fluss and Paimon to provide a complete result set -- combines ", (0,jsx_runtime.jsx)(_components.strong, {
+        children: "real-time"
+      }), " and ", (0,jsx_runtime.jsx)(_components.strong, {
+        children: "historical"
+      }), " data."]
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["In the case you only want to query the data in Paimon directly which is high performance without extra union, you can specifying table ", (0,jsx_runtime.jsx)(_components.code, {
+      children: ["If you wish to query only the data stored in Paimon—offering high-performance access without the overhead of unioning data—you can use the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "datalake_enriched_orders$lake"
-      }), " with ", (0,jsx_runtime.jsx)(_components.code, {
+      }), " table by appending the ", (0,jsx_runtime.jsx)(_components.code, {
         children: "$lake"
-      }), " suffix.\nWith that, you will also get all the optimization and features of a Flink Paimon table source, including ", (0,jsx_runtime.jsx)(_components.a, {
+      }), " suffix.\nThis approach also enables all the optimizations and features of a Flink Paimon table source, including ", (0,jsx_runtime.jsx)(_components.a, {
         href: "https://paimon.apache.org/docs/master/concepts/system-tables/",
         children: "system table"
-      }), " using with ", (0,jsx_runtime.jsx)(_components.code, {
-        children: "datalake_enriched_orders$snapshots"
-      }), ", etc."]
+      }), " such as ", (0,jsx_runtime.jsx)(_components.code, {
+        children: "datalake_enriched_orders$lake$snapshots"
+      }), "."]
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "Use the following SQL to query the snapshots on Paimon:"
+      children: "To query the snapshots directly from Paimon, use the following SQL:"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -518,14 +539,18 @@ function _createMdxContent(props) {
         children: "-- switch to batch mode\nSET 'execution.runtime-mode' = 'batch';\n\n-- to query snapshots in paimon\nSELECT snapshot_id, total_record_count FROM datalake_enriched_orders$lake$snapshots;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "The result looks like:"
+      children: (0,jsx_runtime.jsx)(_components.strong, {
+        children: "Sample Output:"
+      })
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-shell",
         children: "+-------------+--------------------+\n| snapshot_id | total_record_count |\n+-------------+--------------------+\n|           1 |                650 |\n+-------------+--------------------+\n"
       })
-    }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "If it return empty, you may need to wait for checkpoint finish, around 30s."
+    }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
+      children: [(0,jsx_runtime.jsx)(_components.strong, {
+        children: "Note:"
+      }), " Make sure to wait for the checkpoints (~30s) to complete before querying the snapshotsm, otherwise the result will be empty."]
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
       children: "Then, you can run the following SQL to do analytics on Paimon data:"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
@@ -535,14 +560,16 @@ function _createMdxContent(props) {
         children: "-- to sum prices of all orders in paimon\nSELECT sum(total_price) as sum_price FROM datalake_enriched_orders$lake;\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "The result looks like:"
+      children: (0,jsx_runtime.jsx)(_components.strong, {
+        children: "Sample Output:"
+      })
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-shell",
         children: "+------------+\n|  sum_price |\n+------------+\n| 1669519.92 |\n+------------+\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "If want to result with sub-second data freshness, you can query the table directly with union Fluss and Paimon data:"
+      children: "To achieve results with sub-second data freshness, you can query the table directly, which seamlessly unifies data from both Fluss and Paimon:"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-sql",
@@ -556,23 +583,25 @@ function _createMdxContent(props) {
         children: "+------------+\n|  sum_price |\n+------------+\n| 1777908.36 |\n+------------+\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "You can run the real-time analytics query multi-times, the result should be different in every one run since the data are written to Fluss in real-time."
+      children: "You can execute the real-time analytics query multiple times, and the results will vary with each run as new data is continuously written to Fluss in real-time."
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "At last, you can use the following command to see the files in paimon:"
+      children: "Finally, you can use the following command to view the files stored in Paimon:"
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-shell",
         children: "docker-compose exec taskmanager tree /tmp/paimon/fluss.db\n"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "It looks like:"
+      children: (0,jsx_runtime.jsx)(_components.strong, {
+        children: "Sample Output:"
+      })
     }), "\n", (0,jsx_runtime.jsx)(_components.pre, {
       children: (0,jsx_runtime.jsx)(_components.code, {
         className: "language-shell",
         children: "/tmp/paimon/fluss.db\n└── datalake_enriched_orders\n    ├── bucket-0\n    │   ├── changelog-aef1810f-85b2-4eba-8eb8-9b136dec5bdb-0.orc\n    │   └── data-aef1810f-85b2-4eba-8eb8-9b136dec5bdb-1.orc\n    ├── manifest\n    │   ├── manifest-aaa007e1-81a2-40b3-ba1f-9df4528bc402-0\n    │   ├── manifest-aaa007e1-81a2-40b3-ba1f-9df4528bc402-1\n    │   ├── manifest-list-ceb77e1f-7d17-4160-9e1f-f334918c6e0d-0\n    │   ├── manifest-list-ceb77e1f-7d17-4160-9e1f-f334918c6e0d-1\n    │   └── manifest-list-ceb77e1f-7d17-4160-9e1f-f334918c6e0d-2\n    ├── schema\n    │   └── schema-0\n    └── snapshot\n        ├── EARLIEST\n        ├── LATEST\n        └── snapshot-1\n"
       })
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
-      children: ["It's standard format of Paimon which enables you query on it with other engines, like ", (0,jsx_runtime.jsx)(_components.a, {
+      children: ["The files adhere to Paimon's standard format, enabling seamless querying with other engines such as ", (0,jsx_runtime.jsx)(_components.a, {
         href: "https://docs.starrocks.io/docs/data_source/catalog/paimon_catalog/",
         children: "StartRocks"
       }), "."]

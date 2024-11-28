@@ -18,7 +18,7 @@ __webpack_require__.d(__webpack_exports__, {
 });
 
 ;// ./.docusaurus/docusaurus-plugin-content-docs/default/site-docs-install-deploy-overview-md-598.json
-const site_docs_install_deploy_overview_md_598_namespaceObject = /*#__PURE__*/JSON.parse('{"id":"install-deploy/overview","title":"Overview","description":"Below, we briefly explain the building blocks of a Fluss cluster, their functionalities and implementations,","source":"@site/docs/install-deploy/overview.md","sourceDirName":"install-deploy","slug":"/install-deploy/overview","permalink":"/fluss-docs/docs/install-deploy/overview","draft":false,"unlisted":false,"tags":[],"version":"current","sidebarPosition":1,"frontMatter":{"sidebar_position":1},"sidebar":"docsSidebar","previous":{"title":"Architecture","permalink":"/fluss-docs/docs/concepts/architecture"},"next":{"title":"Deploying Local Cluster","permalink":"/fluss-docs/docs/install-deploy/deploying-local-cluster"}}');
+const site_docs_install_deploy_overview_md_598_namespaceObject = /*#__PURE__*/JSON.parse('{"id":"install-deploy/overview","title":"Overview","description":"Below, we provide an overview of the key components of a Fluss cluster, detailing their functionalities and implementations. Additionally, we will introduce the various deployment methods available for Fluss.","source":"@site/docs/install-deploy/overview.md","sourceDirName":"install-deploy","slug":"/install-deploy/overview","permalink":"/fluss-docs/docs/install-deploy/overview","draft":false,"unlisted":false,"tags":[],"version":"current","sidebarPosition":1,"frontMatter":{"sidebar_position":1},"sidebar":"docsSidebar","previous":{"title":"Architecture","permalink":"/fluss-docs/docs/concepts/architecture"},"next":{"title":"Deploying Local Cluster","permalink":"/fluss-docs/docs/install-deploy/deploying-local-cluster"}}');
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__(4848);
 // EXTERNAL MODULE: ./node_modules/@mdx-js/react/lib/index.js
@@ -67,12 +67,12 @@ function _createMdxContent(props) {
         children: "Overview"
       })
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "Below, we briefly explain the building blocks of a Fluss cluster, their functionalities and implementations,\nand we will introduce the different deployment way to deploy Fluss."
+      children: "Below, we provide an overview of the key components of a Fluss cluster, detailing their functionalities and implementations. Additionally, we will introduce the various deployment methods available for Fluss."
     }), "\n", (0,jsx_runtime.jsx)(_components.h2, {
       id: "overview-and-reference-architecture",
       children: "Overview and Reference Architecture"
     }), "\n", (0,jsx_runtime.jsx)(_components.p, {
-      children: "The figure below shows the building blocks of every Fluss cluster:"
+      children: "The figure below shows the building blocks of Fluss clusters:"
     }), "\n", (0,jsx_runtime.jsx)("img", {
       width: "1200px",
       src: (__webpack_require__(146)/* ["default"] */ .A)
