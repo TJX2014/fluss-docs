@@ -174,7 +174,7 @@ function _createMdxContent(props) {
       children: "Preparation"
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
       children: ["You can start a Flink standalone cluster refer to ", (0,jsx_runtime.jsx)(_components.a, {
-        href: "/docs/engine-flink/getting-started/#preparation-when-using-flink-sql-client/",
+        href: "/docs/engine-flink/getting-started#preparation-when-using-flink-sql-client",
         children: "Flink Environment Preparation"
       })]
     }), "\n", (0,jsx_runtime.jsxs)(_components.p, {
